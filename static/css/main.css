@@ -1,0 +1,167 @@
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    background-image: url('../img/958.jpg');
+    /* background-image: url('../img/leaves-pattern.png'); */
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 98%;
+    height: min-content;
+}
+
+h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    margin-bottom: 1em;
+    color: white;  
+}
+
+.navbar {
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-weight: 700;  
+    width: 100%;
+    height: 5em;
+    border: solid 3px black;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    
+    /* =========================================================================
+    This pattern is downloaded from www.toptal.com/designers/subtlepatterns/ 
+    If you need more, that's where to get'em.
+    ======================================================================== */
+    -webkit-box-shadow: 10px 10px 12px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 12px -4px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 12px -4px rgba(0,0,0,0.75);
+     /* <a href="http://www.freepik.com">Designed by topntp26 / Freepik</a> */   
+}
+
+.navbar:hover{
+    background-color: rgba(0,0,0,0.6);
+    height: 5.0em;
+    box-shadow: 16px 16px 4px -4px rgba(0,0,0,0.75);
+}
+
+.navbar-header {
+    font-size: 1.5em;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+
+.collapse {
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+     /* <a href="http://www.freepik.com">Designed by topntp26 / Freepik</a> */
+     background-image: url('../img/pin-board.png');
+     margin-bottom: 2em;
+     padding-bottom: 1em;
+     padding-top: 1em;     
+     width: 100%;
+     align-content: center;
+}
+
+
+.status{
+    /* margin-left: 4em;
+    margin-right: 1em;
+    margin-top: 2em;
+    margin-bottom: 0em; */
+    
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+   position: relative;
+   left: 3.5em;
+  
+    
+    /* position: relative; */
+    /* left: 5%; */
+}
+
+
+button, 
+#newBoardButton {
+    height: 3em;
+    width: 8em;
+    box-shadow:  10px 10px 5px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+    margin-right: 3em;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    border: none;
+}
+
+#newBoardButton {
+    
+    margin-left: 73em;
+    margin-bottom: 4em;
+}
+
+button:hover, 
+#newBoardButton:hover {
+    height: 3em;
+    width: 8.3em;
+    box-shadow: 15px 15px 5px 0px rgba(0,0,0,0.75);
+}
+
+
+.card {
+    height: 10em;
+    width: 10em;
+    background-color: #fff176;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-weight: 450;
+    text-align: center;
+}
+
+.card:hover {
+    cursor: pointer;
+    background-color: #fae311;
+    box-shadow: 14px 14px 9px 0px rgba(0,0,0,0.75);
+}
+
+
+#s41 {
+    background-image: url(../img/done_purple.png);
+    height: 120px;
+    width: 120px;
+    background-size: 100%;
+    margin-bottom: 30px;
+}
+
+
+#s31 {
+    background-image: url(../img/testing_ping.png);
+    height: 120px;
+    width: 120px;
+    background-size: 100%;
+    margin-bottom: 30px;
+}
+
+#s21 {
+    background-image: url(../img/inprogress_blue.png);
+    height: 120px;
+    width: 120px;
+    background-size: 100%;
+    margin-bottom: 30px;
+}
+
+#s11 {
+    background-image: url(../img/new_green.png);
+    height: 120px;
+    width: 120px;
+    background-size: 100%;
+    margin-bottom: 30px;
+}
+   
+    
+    
