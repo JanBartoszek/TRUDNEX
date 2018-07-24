@@ -1,4 +1,6 @@
 // This function is to initialize the application
+domLogin.createLoginContainer();
+
 function init() {
     // init data
     dataHandler.init();
@@ -6,7 +8,10 @@ function init() {
     dom.createNewBoardButton();
     dom.loadBoards();
     dom.loadStatuses();
+    
+    
+
 
 }
 
-init();
+// init();
