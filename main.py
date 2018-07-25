@@ -11,10 +11,14 @@ def boards():
     print(testowa)
     return render_template('boards.html')
 
+
+@app.route("/test/<data>")
+def test(data):
+    print(data)
+    
+
 def main():
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
 if __name__ == '__main__':
     main()
-    
-    
