@@ -89,10 +89,10 @@ let dom = {
     loadBoards: function() {
         console.log('BAAAAM!!!')
         xhttp = new XMLHttpRequest;
-        xhttp.open("GET", "http://0.0.0.0:5000/test/23", true);
-        xhttp.send(); 
-
-
+        xhttp.open("POST", "http://0.0.0.0:5050/test/23", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("name=Henry&surname=Ford");
+        
 
         var boards = dataHandler.getBoards();
         this.showBoards(boards);
