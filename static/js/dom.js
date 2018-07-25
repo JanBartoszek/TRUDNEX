@@ -87,6 +87,13 @@ let dom = {
 
 
     loadBoards: function() {
+        console.log('BAAAAM!!!')
+        xhttp = new XMLHttpRequest;
+        xhttp.open("GET", "http://0.0.0.0:5000/test/23", true);
+        xhttp.send(); 
+
+
+
         var boards = dataHandler.getBoards();
         this.showBoards(boards);
         
