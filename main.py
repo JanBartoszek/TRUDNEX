@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import data_handler
+import json
 
 app = Flask(__name__)
 
@@ -22,8 +23,17 @@ def test(data):
     name = dictio['name']
     surname = dictio['surname']
     result = name + surname
-    print(result)
-    return result
+    jsonrray = json.dumps(dictio)
+    print(jsonrray)
+    return jsonrray
+
+@app.route("/getBoards", methods=['GET', 'POST'])
+def getBoards():
+    boardsDict = data_handler.getBoards()
+    boardsJson = json.dumps(boardsDict)
+    return boardsJson
+
+
 
 
 def main():

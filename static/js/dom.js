@@ -97,12 +97,12 @@ let dom = {
         
         function loadDoc() {
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("testDivId").innerHTML =
-                    this.responseText;
-                }
-            };
+            // xhttp.onreadystatechange = function() {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         document.getElementById("testDivId").innerHTML =
+            //         this.responseText;
+            //     }
+            // };
             xhttp.open("POST", "http://0.0.0.0:5050/test/23", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("name=Bilbo&surname=Baggins");
@@ -110,8 +110,24 @@ let dom = {
         loadDoc();
         
         
-        var boards = dataHandler.getBoards();
-        this.showBoards(boards);
+        var boardsOld = dataHandler.getBoards();
+        console.log(boardsOld);
+                                             // ok so now i am trying to get boards from main and data_handler
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var boardsJson = this.responseText;
+                console.log(boardsJson);
+                var mockJason = '[{"id": 1, "title": "testTitle1", "boards_is_active": true}]';
+                var boardsObject = JSON.parse(mockJason);
+                console.log(boardsObject);
+                dom.showBoards(boardsOld);
+            }
+        };
+        xhttp.open("GET", "http://0.0.0.0:5050/getBoards", true);
+        xhttp.send(); 
+
+        
         
         
         // retrieves boards and makes showBoards called
