@@ -1,7 +1,21 @@
 import persistence
-import util
 import time
 import persistence
+
+
+
+@persistence.connection_handler
+def test(cursor):
+    cursor.execute("""
+                SELECT *
+                FROM users;
+                """)
+    
+    question = cursor.fetchall()
+    return question
+
+
+
 
 
 # This is an example what generally new part of the script should look like.
@@ -387,4 +401,4 @@ def mark_answer_as_accepted(cursor, answer_id):
         
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
