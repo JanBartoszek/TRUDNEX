@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import requests
+import json
 import logic
 
 app = Flask(__name__)
@@ -8,14 +10,20 @@ app = Flask(__name__)
 def boards():
     ''' this is a one-pager which shows all the boards and cards '''
     testowa = logic.test()
-    print(testowa)
+    # print(testowa)
     return render_template('boards.html')
 
 
-@app.route("/test/<data>")
-def test(data):
-    print(data)
+# @app.route("/test/<data>")
+# def test(data):
+#     print(data)
     
+@app.route("/test1", methods = ['POST'])
+def test1():
+    data1 = request.get_json()
+
+    print(data1)
+    return 'data1'
 
 def main():
     app.run(debug=True, host='0.0.0.0')

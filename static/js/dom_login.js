@@ -18,7 +18,7 @@ let domLogin = {
                    + '<input type="checkbox" value="remember-me"> Remember me'
                + '</label>'
             + '</div>'
-            + '<button  onClick ="ajaxTest.getLogin()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>'
+            + '<button  onClick ="ajaxTest.ajaxPostForm()" class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>'
         + '</form><!-- /form -->'
         + '<a href="#" class="forgot-password">'
            + 'Forgot the password?'
@@ -50,18 +50,22 @@ let ajaxTest = {
     getLogin: function(){
         var formContent = document.getElementById("sign");
         var email = formContent.elements["inputEmail"].value;
-        return email;
+        var user = { email : email };
+        return user;
+    },
+
+    convertToJSON : function(){
+        var convertedUser = JSON.stringify(this.getLogin());
+        return convertedUser;
     },
 
     ajaxPostForm: function(){
-        var get = this.getLogin();
+        var convertedUser = this.convertToJSON();
         var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-        
-                document.getElementById("boards").innerHTML = get;
+        xhttp.open("POST", "/test1", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(convertedUser);
 
-        }
 
     }
 
