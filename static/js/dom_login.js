@@ -41,7 +41,6 @@ let domLogin = {
     getLoginForm: function(){
    
         var email = document.getElementById("inputEmail").value;
-       console.log(email);
         var password = document.getElementById("inputPassword").value;
         var userEmailAndPassword = { email : email, password : password };
         return userEmailAndPassword;

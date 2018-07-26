@@ -23,4 +23,6 @@ def get_user_id(dict):
 def get_boards(user_id):
     return data_manager.getBoards(user_id)
     
+def add_user(login, password):
+    return data_manager.addUser(login, password)
 
