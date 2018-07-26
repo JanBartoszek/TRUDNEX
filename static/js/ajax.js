@@ -12,6 +12,11 @@ let sendToServer = {
         xhttp.open("POST", endpoint, true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(dataToSend);
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                return alert(this.responseText);
+           }
+        };
     }
 
 }
