@@ -38,10 +38,12 @@ def test(cursor):
 
 
 @persistence.connection_handler
-def getBoards(cursor):
+def getBoards(cursor, user_id):
     cursor.execute(
-                """
-                    SELECT * FROM boards;
-                """)
+        sql.SQL("""
+                    SELECT * FROM boards
+                    WHERE boards_users_id = %(user_id)s;
+                """), {'user_id': user_id}
+                   )
     list_of_dicts = cursor.fetchall()
     return list_of_dicts

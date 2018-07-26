@@ -49,8 +49,9 @@ def test1():
         return login_result
     if logic.check_user_login(user_login_and_password) == True and logic.check_user_password(user_login_and_password) == True:
         session['user:' + str(user_id)] = user_login_and_password['email']
-        login_result = "ok"
-        return login_result
+        login_result = logic.get_boards(user_id)
+        login_result_jsoned = json.dumps(login_result)
+        return login_result_jsoned
     if logic.check_user_login(user_login_and_password) == True and logic.check_user_password(user_login_and_password) == False:
         login_result = "incorrect password"
         return login_result

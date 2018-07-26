@@ -87,32 +87,17 @@ let dom = {
 
 
     loadBoards: function() {
-                                        // this is where i test ajax
-        
-        
-        function loadDoc() {
-            var xhttp = new XMLHttpRequest();       // this is just to test passing values through link(test/23)
-            xhttp.open("POST", "http://0.0.0.0:5050/test/23", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("name=Bilbo&surname=Baggins");
-        }
-        loadDoc();
-        
-        
-        var boardsOld = dataHandler.getBoards();
-        console.log(boardsOld);
-                                             // ok so now i am trying to get boards from main and data_handler
+
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var boardsJson = this.responseText;
-                console.log(boardsJson);
                 var boardsObject = JSON.parse(boardsJson);
                 console.log(boardsObject);
                 dom.showBoards(boardsObject);
             }
         };
-        xhttp.open("GET", "http://0.0.0.0:5050/getBoards", true);
+        xhttp.open("GET", "/getBoards", true);
         xhttp.send(); 
 
         

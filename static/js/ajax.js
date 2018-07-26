@@ -14,9 +14,20 @@ let sendToServer = {
         xhttp.send(dataToSend);
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                return alert(this.responseText);
+                if (this.readyState == "incorrect password"){
+                    alert("incorrect password")
+                } if else (this.readyState == "email doesn't exist"){
+                    alert("email doesn't exist")
+                } else {
+                    alert(this.responseText)}
+                // if (this.responseText == 'ok'){
+                // return alert(this.responseText);
+
+                    // domLogin.changeDom(dom.loadBoards);
+
+                }
+
            }
-        };
-    }
+        }
 
 }
