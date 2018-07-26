@@ -87,15 +87,20 @@ let dom = {
 
 
     loadBoards: function() {
-        console.log('BAAAAM!!!')
-        xhttp = new XMLHttpRequest;
-        xhttp.open("GET", "http://0.0.0.0:5000/test/23", true);
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var boardsJson = this.responseText;
+                var boardsObject = JSON.parse(boardsJson);
+                console.log(boardsObject);
+                dom.showBoards(boardsObject);
+            }
+        };
+        xhttp.open("GET", "/getBoards", true);
         xhttp.send(); 
 
-
-
-        var boards = dataHandler.getBoards();
-        this.showBoards(boards);
+        
         
         
         // retrieves boards and makes showBoards called
@@ -104,27 +109,29 @@ let dom = {
 
 
     showBoards: function(boards) {
+        console.log(boards)
         var boards_container = document.getElementById('boards');
         boards.forEach(function(board){
+            console.log(board)
             
             var div = document.createElement('div');
             var nav = document.createElement('nav');
             var boardContent = document.createElement('div');
 
-            div.setAttribute('id','b' + board.id);
+            div.setAttribute('id','b' + board.boards_id);
             div.setAttribute('class', 'container');
             boards_container.appendChild(div);
 
-            nav.setAttribute('id','b' + board.id + '_navbar');
+            nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
             nav.innerHTML = '<div class="navbar-header">' + board.title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.id + '_boardContent' + '">' + 'DETAILS' + '</button>';
-            boards_container.children[board.id - 1].appendChild(nav);
+            boards_container.children[board.boards_id - 1].appendChild(nav);
 
-            boardContent.setAttribute('id','b' + board.id + '_boardContent');
+            boardContent.setAttribute('id','b' + board.boards_id + '_boardContent');
             boardContent.setAttribute('class', 'collapse');
-            boardContent.innerHTML = '<div id="newCardbutton_container' + board.id + '">' + '</div>';
-            boards_container.children[board.id - 1].appendChild(boardContent);
-            dom.createNewCardButton(board.id);
+            boardContent.innerHTML = '<div id="newCardbutton_container' + board.boards_id + '">' + '</div>';
+            boards_container.children[board.boards_id - 1].appendChild(boardContent);
+            dom.createNewCardButton(board.boards_id);
             
 
         }
