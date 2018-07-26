@@ -90,16 +90,21 @@ let dom = {
 
     showBoards: function(boards) {
         console.log(boards)
+
+        var place_to_insert_boards_container = document.getElementById('this_is_the_place_to_create_board_container');
         
-        var boards_container = document.createElement('div');
-        boards_container.setAttribute('id', 'boards');
+        var bbc = document.createElement('div');
+        // boards_container.setAttribute('class', 'boards_container')
+        bbc.setAttribute('id', 'bbc');
+        place_to_insert_boards_container.appendChild(bbc);
+
         
         var buttonDiv = document.createElement('div');
-        buttonDiv.innerHTML = '<button id="logoutBtn" onClick="dom.removeBoardsContainer(domLogin.createLoginContainer)">Log out</button>';
-        boards_container.appendChild(buttonDiv);
+        buttonDiv.setAttribute('id', 'button_div');
+        bbc.appendChild(buttonDiv);
+        document.getElementById('button_div').innerHTML = '<button id="logoutBtn" onClick="dom.removeBoardsContainer(domLogin.createLoginContainer)">Log out</button>';
+
         
-        var place_to_insert_boards_container = document.getElementById('this_is_the_place_to_create_board_container');
-        place_to_insert_boards_container.appendChild(boards_container);
 
         // dom.createNewBoardButton();
                                                 // janka JANKA
@@ -113,17 +118,21 @@ let dom = {
             
             div.setAttribute('id','b' + board.boards_id);
             div.setAttribute('class', 'container');
-            boards_container.appendChild(div);
+            bbc.appendChild(div);
             
             nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
             nav.innerHTML = '<div class="navbar-header">' + board.boards_title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.boards_id + '_boardContent' + '">' + 'DETAILS' + '</button>';
-            boards_container.children[board.boards_id - 1].appendChild(nav);
+            document.getElementById('b' + board.boards_id).appendChild(nav);
+            // boards_container.children[board.boards_id - 1].appendChild(nav);
+
 
             boardContent.setAttribute('id','b' + board.boards_id + '_boardContent');
             boardContent.setAttribute('class', 'collapse');
             boardContent.innerHTML = '<div id="newCardbutton_container' + board.boards_id + '">' + '</div>';
-            boards_container.children[board.boards_id - 1].appendChild(boardContent);
+            document.getElementById('b' + board.boards_id).appendChild(boardContent);
+            // boards_container.children[board.boards_id - 1].appendChild(boardContent);
+
         });
 
         
@@ -133,7 +142,7 @@ let dom = {
     },
 
     removeBoardsContainer : function (callback) {
-        var boardsContainerVol2 = document.getElementById("boards");
+        var boardsContainerVol2 = document.getElementById("bbc");
         boardsContainerVol2.parentNode.removeChild(boardsContainerVol2);
         callback();
 
