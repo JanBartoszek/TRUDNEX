@@ -14,8 +14,6 @@ let sendToServer = {
         xhttp.send(dataToSend);
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
-
                 if (this.responseText == "incorrect password"){
                     alert("incorrect password");
                 } 
@@ -25,9 +23,14 @@ let sendToServer = {
                 } 
                 
                 else {
-                    var boards = JSON.parse(this.responseText);
+                    var parsedData = JSON.parse(this.responseText);
+                    var boards = parsedData['boards'];
+                    var statuses = parsedData['statuses'];
+                    var cards = parsedData['cards'];
+                    // alert(boards);
                     domLogin.removeLoginContainer();
                     dom.showBoards(boards);
+                    dom.loadStatuses(statuses, boards, cards);
                 }
 
             }

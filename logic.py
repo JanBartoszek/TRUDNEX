@@ -22,6 +22,12 @@ def get_user_id(dict):
 
 def get_boards(user_id):
     return data_manager.getBoards(user_id)
+
+def get_statuses():
+    return data_manager.getStatuses()
+
+def get_cards(user_id):
+    return data_manager.getCards(user_id)    
     
 def add_user(login, password):
     return data_manager.addUser(login, password)

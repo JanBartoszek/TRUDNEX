@@ -53,3 +53,27 @@ def getBoards(cursor, user_id):
 def addUser(cursor, user_name, user_password):
     cursor.execute("INSERT into users(users_username, users_password) VALUES (%s, %s)", 
     (user_name, user_password))
+
+
+@persistence.connection_handler
+def getStatuses(cursor):
+    cursor.execute(
+        sql.SQL("""
+                    SELECT * FROM statuses;
+                """)
+                   )
+    list_of_dicts = cursor.fetchall()
+    return list_of_dicts
+
+
+@persistence.connection_handler
+def getCards(cursor, user_id):
+    cursor.execute(
+        sql.SQL("""
+                    SELECT cards.* FROM cards
+                    JOIN boards ON cards.cards_boards_id = boards.boards_id
+                    WHERE boards_users_id = %(user_id)s;
+                """), {'user_id': user_id}
+                   )
+    list_of_dicts = cursor.fetchall()
+    return list_of_dicts
