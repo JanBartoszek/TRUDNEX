@@ -14,14 +14,14 @@ createRegisterContainer: function(){
         + '<p id="profile-name" class="profile-name-card"></p>'
         + '<div id = "sign" class="form-signin">'
             + '<span id="reauth-email" class="reauth-email"></span>'
-            + '<input type="email" id="inputEmail" class="form-control" placeholder="Email address" >'
-            + '<input type="password" id="inputPassword" class="form-control" placeholder="Password" >'
+            + '<input type="email" id="inputEmailRegister" class="form-control" placeholder="Email address" >'
+            + '<input type="password" id="inputPasswordRegister" class="form-control" placeholder="Password" >'
             // + '<div id="remember" class="checkbox">'
             // //    + '<label>'
             // //        + '<input type="checkbox" value="remember-me"> Remember me'
             // //    + '</label>'
             // + '</div>'
-            + '<button  onClick ="ajaxTest.ajaxPostForm()" class="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>'
+            + '<button  onClick ="sendToServer.sendLoginDataRegister()" class="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>'
         + '</div>'
         // + '<a href="#" class="forgot-password">'
         //    + 'Forgot the password?'
@@ -33,5 +33,13 @@ createRegisterContainer: function(){
         var registerContainer = document.getElementById("registerContainer");
         registerContainer.parentNode.removeChild(registerContainer);
         callback()
+    },
+
+    getRegisterForm: function(){
+   
+        var email = document.getElementById("inputEmailRegister").value;
+        var password = document.getElementById("inputPasswordRegister").value;
+        var userEmailAndPassword = { email : email, password : password };
+        return userEmailAndPassword;
     },
 }

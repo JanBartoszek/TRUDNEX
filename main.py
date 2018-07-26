@@ -56,6 +56,18 @@ def test1():
         login_result = "incorrect password"
         return login_result
 
+
+
+@app.route("/test2", methods = ['POST'])
+def test2():
+    user_login_and_password = request.get_json()
+    login = user_login_and_password["email"]
+    password = user_login_and_password["password"]
+    
+    logic.add_user(login, password)
+
+    return "1"
+
 # @app.route("/test1", methods = ['GET'])
 # def test1view():
 #     return 'abc'

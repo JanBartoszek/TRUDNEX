@@ -47,3 +47,9 @@ def getBoards(cursor, user_id):
                    )
     list_of_dicts = cursor.fetchall()
     return list_of_dicts
+
+
+@persistence.connection_handler
+def addUser(cursor, user_name, user_password):
+    cursor.execute("INSERT into users(users_username, users_password) VALUES (%s, %s)", 
+    (user_name, user_password))
