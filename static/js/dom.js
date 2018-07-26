@@ -37,14 +37,11 @@ let dom = {
 
 
     createNewBoardButton: function(){
-        var newBoardButton = document.createElement('button');
-        newBoardButton.setAttribute('class', 'btn btn-default');
-        newBoardButton.setAttribute('id', 'newBoardButton');
-        newBoardButton.setAttribute('type', 'button');
-        newBoardButton.setAttribute('data-toggle', 'modal');
-        newBoardButton.setAttribute('data-target', '#my-modal');
-        document.getElementById('newBoardbutton_container').appendChild(newBoardButton);
-        document.getElementById('newBoardButton').innerHTML = 'New board';
+        var newBoardButtonDiv = document.createElement('div');
+        newBoardButtonDiv.innerHTML = 
+            '<button class="btn btn-default" id="newBoardButton" type="button" data-toggle="modal" data-target="#my-modal">New board</button>';
+
+        document.getElementById('boards').appendChild(newBoardButtonDiv);
         this.createModal();
     },
 
@@ -85,24 +82,6 @@ let dom = {
         console.log(idOfTheLastBoard);
         dataHandler.createNewBoard(idOfTheLastBoard + 1, newBoardName);
     },
-
-
-    // loadBoards: function() {
-
-    //     var xhttp = new XMLHttpRequest();
-    //     xhttp.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             var boardsJson = this.responseText;
-    //             var boardsObject = JSON.parse(boardsJson);
-    //             console.log(boardsObject);
-    //             dom.showBoards(boardsObject);
-    //         }
-    //     };
-    //     xhttp.open("GET", "/getBoards", true);
-    //     xhttp.send(); 
-
-        
-        
         
         // retrieves boards and makes showBoards called
     // -2-
@@ -116,13 +95,14 @@ let dom = {
         boards_container.setAttribute('id', 'boards');
         
         var buttonDiv = document.createElement('div');
-        buttonDiv.innerHTML = '<button id = "logoutBtn" onClick = "dom.removeBoardsContainer(domLogin.createLoginContainer)">Log out</button>';
+        buttonDiv.innerHTML = '<button id="logoutBtn" onClick="dom.removeBoardsContainer(domLogin.createLoginContainer)">Log out</button>';
         boards_container.appendChild(buttonDiv);
         
         var place_to_insert_boards_container = document.getElementById('this_is_the_place_to_create_board_container');
         place_to_insert_boards_container.appendChild(boards_container);
 
-        
+        // dom.createNewBoardButton();
+
         boards.forEach(function(board){
             // console.log(board)
 
@@ -130,13 +110,10 @@ let dom = {
             var nav = document.createElement('nav');
             var boardContent = document.createElement('div');
             
-
             div.setAttribute('id','b' + board.boards_id);
             div.setAttribute('class', 'container');
             boards_container.appendChild(div);
             
-
-
             nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
             nav.innerHTML = '<div class="navbar-header">' + board.boards_title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.boards_id + '_boardContent' + '">' + 'DETAILS' + '</button>';
@@ -146,14 +123,9 @@ let dom = {
             boardContent.setAttribute('class', 'collapse');
             boardContent.innerHTML = '<div id="newCardbutton_container' + board.boards_id + '">' + '</div>';
             boards_container.children[board.boards_id - 1].appendChild(boardContent);
-            dom.createNewCardButton(board.boards_id);
-            
+        });
 
-        }
-        );
-
-    
-
+        
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
     // -4-
@@ -278,6 +250,7 @@ let dom = {
         // it adds necessary event listeners also
     // -4-
     },
+    
     appendToElement: function(elementToExtend, textToAppend, prepend = false) {
         // function to append new DOM elements (represented by a string) to an existing DOM element
         let fakeDiv = document.createElement('div');
