@@ -215,29 +215,34 @@ let dom = {
     showStatuses: function(statuses, boardsArg, cardsArg){
 
         var numberOfBoards = boardsArg;
-        // console.log(cardsArg)
+        var idOfTheFirstBoard = boardsArg[0]
+        console.log(boardsArg)
         
-        for (var i=1 ; i<=numberOfBoards.length ; i++){
-        statuses.forEach(function(status){
-            // var paragraph = document.createElement('p');
-            var div = document.createElement('div');
-            // paragraph.setAttribute('class', 'label');
-            // paragraph.setAttribute('id','b' + i + 'label' + status.id);
-            div.setAttribute('id','b' + i + 's' + status.statuses_id);
-            div.setAttribute('class', 'status');
-            div.setAttribute('ondrop', 'dom.drop(event)');
-            div.setAttribute('ondragover', 'dom.allowDrop(event)');
-            div.innerHTML = status.statuses_name;
-            div.innerHTML = "<div class = 'labels' id = s"+status.statuses_id+"1>"+"</div>"
-            // paragraph.innerHTML = status.name;
-            var statuses_container = document.getElementById('b' + (i) + '_boardContent');
-            // statuses_container.appendChild(paragraph);
-            statuses_container.appendChild(div);
-            }    
-        );
-        this.loadCards(i, cardsArg);
-    }
+        boardsArg.forEach(function(board){
+
+            // for (var i=1 ; i<=numberOfBoards.length ; i++){
+            statuses.forEach(function(status){
+                // var paragraph = document.createElement('p');
+                var div = document.createElement('div');
+                // paragraph.setAttribute('class', 'label');
+                // paragraph.setAttribute('id','b' + i + 'label' + status.id);
+                div.setAttribute('id','b' + board.boards_id + 's' + status.statuses_id);
+                div.setAttribute('class', 'status');
+                div.setAttribute('ondrop', 'dom.drop(event)');
+                div.setAttribute('ondragover', 'dom.allowDrop(event)');
+                div.innerHTML = status.statuses_name;
+                div.innerHTML = "<div class = 'labels' id = s"+status.statuses_id+"1>"+"</div>"
+                // paragraph.innerHTML = status.name;
+                var statuses_container = document.getElementById('b' + board.boards_id + '_boardContent');
+                // statuses_container.appendChild(paragraph);
+                statuses_container.appendChild(div);
+                }    
+                );
+            dom.loadCards(board.boards_id, cardsArg);
+        }
+        )
     },
+
     loadCards: function(boardId, cardsArg) {
         var cards = dataHandler.getCardsByBoardId(boardId, cardsArg);
         // console.log(cards)
@@ -245,6 +250,7 @@ let dom = {
         // retrieves cards and makes showCards called
     // -4-    
     },
+
     showCards: function(cards) {
 
         cards.forEach(function(card){       
