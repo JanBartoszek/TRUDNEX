@@ -6,6 +6,7 @@ def check_user_login(dict):
     login = dict['email']
     if data_manager.get_user_password(login) != []:
         return True
+    return False
 
 def check_user_password(dict):
     login = dict['email']
@@ -13,6 +14,7 @@ def check_user_password(dict):
     if data_manager.get_user_password(login) != []:
         if password == data_manager.get_user_password(login)[0]['users_password']:
             return True
+    return False
 
 def get_user_id(dict):
     login = dict['email']
