@@ -107,7 +107,6 @@ let dom = {
     // -2-
     },
 
-
     showBoards: function(boards) {
         console.log(boards)
         var boards_container = document.getElementById('boards');
@@ -124,7 +123,7 @@ let dom = {
 
             nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
-            nav.innerHTML = '<div class="navbar-header">' + board.title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.id + '_boardContent' + '">' + 'DETAILS' + '</button>';
+            nav.innerHTML = '<div class="navbar-header">' + board.boards_title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.boards_id + '_boardContent' + '">' + 'DETAILS' + '</button>';
             boards_container.children[board.boards_id - 1].appendChild(nav);
 
             boardContent.setAttribute('id','b' + board.boards_id + '_boardContent');
