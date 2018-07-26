@@ -50,12 +50,13 @@ let dom = {
 
 
     createModal: function(){
+        console.log('modal');
         var modal = document.createElement('div');
         modal.setAttribute('class', 'modal fade');
         modal.setAttribute('id', 'my-modal');
         modal.setAttribute('role', 'dialog');
         document.getElementById('newBoardbutton_container').appendChild(modal);
-        document.getElementById('my-modal').innerHTML =
+        document.getElementById('my-modal').innerHTML = 
         '<div class="modal-dialog">'
             + '<div class="modal-content">'
                 + '<div class="modal-header">'
@@ -110,17 +111,31 @@ let dom = {
 
     showBoards: function(boards) {
         console.log(boards)
-        var boards_container = document.getElementById('boards');
+        
+        var boards_container = document.createElement('div');
+        boards_container.setAttribute('id', 'boards');
+        
+        var buttonDiv = document.createElement('div');
+        buttonDiv.innerHTML = '<button id = "logoutBtn" onClick = "dom.removeBoardsContainer(domLogin.createLoginContainer)">Log out</button>';
+        boards_container.appendChild(buttonDiv);
+        
+        var place_to_insert_boards_container = document.getElementById('this_is_the_place_to_create_board_container');
+        place_to_insert_boards_container.appendChild(boards_container);
+
+        
         boards.forEach(function(board){
             // console.log(board)
-            
-            var div = document.createElement('div');
+
+            var div = document.createElement('div'); 
             var nav = document.createElement('nav');
             var boardContent = document.createElement('div');
+            
 
             div.setAttribute('id','b' + board.boards_id);
             div.setAttribute('class', 'container');
             boards_container.appendChild(div);
+            
+
 
             nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
@@ -137,11 +152,22 @@ let dom = {
         }
         );
 
+    
 
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
     // -4-
     },
+
+    removeBoardsContainer : function (callback) {
+        var boardsContainerVol2 = document.getElementById("boards");
+        boardsContainerVol2.parentNode.removeChild(boardsContainerVol2);
+        callback();
+
+
+    },
+
+
 
     createNewCardButton: function(boardId){
         var newCardButton = document.createElement('button');

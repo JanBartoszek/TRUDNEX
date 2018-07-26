@@ -6,7 +6,7 @@ let domLogin = {
         loginContainer.setAttribute("class", "fluid-container");
         document.body.appendChild(loginContainer);
 
-        document.getElementById("loginContainer").innerHTML = '<button id = "loginBtn" onClick = "domLogin.removeLoginContainer(domRegister.createRegisterContainer)">Register</button>'
+        document.getElementById("loginContainer").innerHTML = '<button id = "registerBtn" onClick = "domLogin.removeLoginContainerCallback(domRegister.createRegisterContainer)">Register</button>'
         +'<p id = "login" class = "paragraph">Log in</p>'
         +'<div class="d-flex justify-content-center">'
         + '<div id = "login-form" class="form-signin">'
@@ -26,7 +26,14 @@ let domLogin = {
     
     },
 
-    removeLoginContainer: function(callback){
+    removeLoginContainer: function(){
+        var loginContainer = document.getElementById("loginContainer");
+        loginContainer.parentNode.removeChild(loginContainer);
+        // callback()
+        
+    },
+
+    removeLoginContainerCallback: function(callback){
         var loginContainer = document.getElementById("loginContainer");
         loginContainer.parentNode.removeChild(loginContainer);
         callback()

@@ -7,7 +7,7 @@ createRegisterContainer: function(){
         document.body.appendChild(registerContainer);
 
 
-        document.getElementById("registerContainer").innerHTML = '<button id = "registerBtn" onClick = "domRegister.removeRegisterContainer(domLogin.createLoginContainer)">Log in</button>'
+        document.getElementById("registerContainer").innerHTML = '<button id = "loginBtn" onClick = "domRegister.removeRegisterContainer(domLogin.createLoginContainer)">Log in</button>'
         +'<p id = "register" class = "paragraph">Register</p>'
         +'<div class="d-flex justify-content-center">'
         // +'<!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->' 
