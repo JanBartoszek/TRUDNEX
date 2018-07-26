@@ -7,7 +7,7 @@ import logic
 app = Flask(__name__)
 app.secret_key = 'dupa'
 
-@app.route("/")
+@app.route("/", methods = ["GET"])
 def boards():
     ''' this is a one-pager which shows all the boards and cards '''
     return render_template('boards.html')
@@ -63,6 +63,5 @@ def test1():
 def main():
     app.debug = True
     app.run(host='0.0.0.0', port=5050)
-
 if __name__ == '__main__':
     main()
