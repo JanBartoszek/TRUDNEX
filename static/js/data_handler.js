@@ -46,11 +46,11 @@ let dataHandler = {
     getCards: function() {
         return this._data.cards;
     },
-    getCardsByBoardId: function(boardId) {
+    getCardsByBoardId: function(boardId, cardsArg) {
         var list = [];
-        var cards = this._data['cards'];
+        var cards = cardsArg;
         for (dict of cards){
-            if (dict["board_id"] == boardId){
+            if (dict["cards_boards_id"] == boardId){
                 list.push(dict);
             }
         }

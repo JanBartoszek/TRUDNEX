@@ -49,9 +49,24 @@ def test1():
     if logic.check_user_login(user_login_and_password) == True and logic.check_user_password(user_login_and_password) == True:
         user_id = logic.get_user_id(user_login_and_password)
         session['user:' + str(user_id)] = user_login_and_password['email']
-        login_result = logic.get_boards(user_id)
-        login_result_jsoned = json.dumps(login_result)
-        return login_result_jsoned
+
+        boards = logic.get_boards(user_id)
+        # print(boards)
+        statuses = logic.get_statuses()
+        # print(statuses)
+        cards = logic.get_cards(user_id)
+        # print(cards)
+
+        # boards_jsoned = json.dumps(boards)
+        # statuses_jsoned = json.dumps(statuses)
+        # cards_jsoned = json.dumps(cards)
+
+        args = {'boards' : boards, 'statuses' : statuses, 'cards' : cards}
+
+        args_jsoned = json.dumps(args)
+
+        return args_jsoned
+
     if logic.check_user_login(user_login_and_password) == True and logic.check_user_password(user_login_and_password) == False:
         login_result = "incorrect password"
         return login_result
