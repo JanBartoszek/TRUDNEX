@@ -18,7 +18,7 @@ def boards():
 # def test(data):
 #     print(data)
     
-@app.route("/", methods = ['POST'])
+@app.route("/test", methods = ['POST'])
 def test1():
     data1 = request.get_json()
     print(data1)
