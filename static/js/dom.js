@@ -89,20 +89,9 @@ let dom = {
     loadBoards: function() {
                                         // this is where i test ajax
         
-        console.log('BAAAAM!!!')
-        // xhttp = new XMLHttpRequest;
-        // xhttp.open("POST", "http://0.0.0.0:5050/test/23", true);
-        // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        // xhttp.send("name=Henry&surname=Ford");
         
         function loadDoc() {
-            var xhttp = new XMLHttpRequest();
-            // xhttp.onreadystatechange = function() {
-            //     if (this.readyState == 4 && this.status == 200) {
-            //         document.getElementById("testDivId").innerHTML =
-            //         this.responseText;
-            //     }
-            // };
+            var xhttp = new XMLHttpRequest();       // this is just to test passing values through link(test/23)
             xhttp.open("POST", "http://0.0.0.0:5050/test/23", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("name=Bilbo&surname=Baggins");
@@ -118,10 +107,9 @@ let dom = {
             if (this.readyState == 4 && this.status == 200) {
                 var boardsJson = this.responseText;
                 console.log(boardsJson);
-                var mockJason = '[{"id": 1, "title": "testTitle1", "boards_is_active": true}]';
-                var boardsObject = JSON.parse(mockJason);
+                var boardsObject = JSON.parse(boardsJson);
                 console.log(boardsObject);
-                dom.showBoards(boardsOld);
+                dom.showBoards(boardsObject);
             }
         };
         xhttp.open("GET", "http://0.0.0.0:5050/getBoards", true);
@@ -136,27 +124,29 @@ let dom = {
 
 
     showBoards: function(boards) {
+        console.log(boards)
         var boards_container = document.getElementById('boards');
         boards.forEach(function(board){
+            console.log(board)
             
             var div = document.createElement('div');
             var nav = document.createElement('nav');
             var boardContent = document.createElement('div');
 
-            div.setAttribute('id','b' + board.id);
+            div.setAttribute('id','b' + board.boards_id);
             div.setAttribute('class', 'container');
             boards_container.appendChild(div);
 
-            nav.setAttribute('id','b' + board.id + '_navbar');
+            nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
             nav.innerHTML = '<div class="navbar-header">' + board.title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.id + '_boardContent' + '">' + 'DETAILS' + '</button>';
-            boards_container.children[board.id - 1].appendChild(nav);
+            boards_container.children[board.boards_id - 1].appendChild(nav);
 
-            boardContent.setAttribute('id','b' + board.id + '_boardContent');
+            boardContent.setAttribute('id','b' + board.boards_id + '_boardContent');
             boardContent.setAttribute('class', 'collapse');
-            boardContent.innerHTML = '<div id="newCardbutton_container' + board.id + '">' + '</div>';
-            boards_container.children[board.id - 1].appendChild(boardContent);
-            dom.createNewCardButton(board.id);
+            boardContent.innerHTML = '<div id="newCardbutton_container' + board.boards_id + '">' + '</div>';
+            boards_container.children[board.boards_id - 1].appendChild(boardContent);
+            dom.createNewCardButton(board.boards_id);
             
 
         }

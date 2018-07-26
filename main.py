@@ -27,13 +27,12 @@ def test(data):
     print(jsonrray)
     return jsonrray
 
+
 @app.route("/getBoards", methods=['GET', 'POST'])
 def getBoards():
     boardsDict = data_handler.getBoards()
     boardsJson = json.dumps(boardsDict)
     return boardsJson
-
-
 
 
 def main():
