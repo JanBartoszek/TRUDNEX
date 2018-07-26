@@ -1,7 +1,7 @@
 // It uses data_handler.js to visualize elements
 let dom = {
 
-
+ 
     allowDrop: function (ev) {
         ev.preventDefault();
     },
@@ -139,7 +139,7 @@ let dom = {
 
 
         // shows boards appending them to #boards div
-        // it adds necessary event listeners also
+        // it adds necessary event listeners  also
     // -4-
     },
 
