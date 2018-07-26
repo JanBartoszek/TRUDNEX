@@ -6,10 +6,10 @@ import logic
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods = ["GET"])
 def boards():
     ''' this is a one-pager which shows all the boards and cards '''
-    testowa = logic.test()
+    # testowa = logic.test()
     # print(testowa)
     return render_template('boards.html')
 
@@ -18,12 +18,11 @@ def boards():
 # def test(data):
 #     print(data)
     
-@app.route("/test1", methods = ['POST'])
+@app.route("/", methods = ['POST'])
 def test1():
     data1 = request.get_json()
-
     print(data1)
-    return 'data1'
+    return "1"
 
 def main():
     app.run(debug=True, host='0.0.0.0')
