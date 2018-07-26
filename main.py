@@ -1,16 +1,17 @@
-from flask import Flask, render_template, request
-import data_handler
+import data_manager
 import json
+from flask import Flask, render_template, request, session
+import requests
+import logic
 
 app = Flask(__name__)
-
+app.secret_key = 'dupa'
 
 @app.route("/")
 def boards():
     ''' this is a one-pager which shows all the boards and cards '''
-    testowa = data_handler.test()    # this was just to test db connection
-    print(testowa)
     return render_template('boards.html')
+
 
 
 @app.route("/test/<data>", methods=['GET', 'POST'])
@@ -34,6 +35,22 @@ def getBoards():
     boardsJson = json.dumps(boardsDict)
     return boardsJson
 
+    # testowa = logic.test()
+    # print(testowa)
+    return render_template('boards.html')
+
+    
+@app.route("/test1", methods = ['POST'])
+def test1():
+    user_login_and_password = request.get_json()
+    user_id = logic.get_user_id(user_login_and_password)
+    if logic.check_user_login(user_login_and_password) == True and logic.check_user_password(user_login_and_password) == True:
+        session['user:' + str(user_id)] = user_login_and_password['email']
+    return 'user_login_and_password'
+
+@app.route("/test1", methods = ['GET'])
+def test1view():
+    return 'abc'
 
 def main():
     app.debug = True
