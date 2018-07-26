@@ -86,33 +86,33 @@ let dom = {
     },
 
 
-    loadBoards: function() {
+    // loadBoards: function() {
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var boardsJson = this.responseText;
-                var boardsObject = JSON.parse(boardsJson);
-                console.log(boardsObject);
-                dom.showBoards(boardsObject);
-            }
-        };
-        xhttp.open("GET", "/getBoards", true);
-        xhttp.send(); 
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             var boardsJson = this.responseText;
+    //             var boardsObject = JSON.parse(boardsJson);
+    //             console.log(boardsObject);
+    //             dom.showBoards(boardsObject);
+    //         }
+    //     };
+    //     xhttp.open("GET", "/getBoards", true);
+    //     xhttp.send(); 
 
         
         
         
         // retrieves boards and makes showBoards called
     // -2-
-    },
+    // },
 
 
     showBoards: function(boards) {
         console.log(boards)
         var boards_container = document.getElementById('boards');
         boards.forEach(function(board){
-            console.log(board)
+            // console.log(board)
             
             var div = document.createElement('div');
             var nav = document.createElement('nav');
@@ -124,7 +124,7 @@ let dom = {
 
             nav.setAttribute('id','b' + board.boards_id + '_navbar');
             nav.setAttribute('class', "navbar navbar-inverse");
-            nav.innerHTML = '<div class="navbar-header">' + board.title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.id + '_boardContent' + '">' + 'DETAILS' + '</button>';
+            nav.innerHTML = '<div class="navbar-header">' + board.boards_title + '</div>' + '<button data-toggle="collapse" data-target="#' + 'b' + board.boards_id + '_boardContent' + '">' + 'DETAILS' + '</button>';
             boards_container.children[board.boards_id - 1].appendChild(nav);
 
             boardContent.setAttribute('id','b' + board.boards_id + '_boardContent');

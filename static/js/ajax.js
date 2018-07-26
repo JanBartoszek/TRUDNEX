@@ -1,31 +1,39 @@
 let sendToServer = {
 
-    sendLoginData : function(){
+    sendLoginData: function () {
         var endpoint = '/test1'
         var dataFromLoginForm = domLogin.getLoginForm();
         var convertedDataFromLoginForm = logic.convertToJSON(dataFromLoginForm);
         this.sendToServer(endpoint, convertedDataFromLoginForm);
     },
 
-    sendToServer : function(endpoint, dataToSend){
+    sendToServer: function (endpoint, dataToSend) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", endpoint, true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(dataToSend);
-        xhttp.onreadystatechange = function() {
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                if (this.readyState == "incorrect password")
+                console.log(this.responseText);
+
+                if (this.responseText == "incorrect password"){
                     alert("incorrect password");
-                } else if (this.readyState == "email doesn't exist"){
-                    alert("email doesn't exist");
-                } else {
-                    alert(this.responseText);
-                }
+                } 
                 
+                else if (this.responseText == "email doesn't exist") {
+                    alert("email doesn't exist");
+                } 
+                
+                else {
+                    var boards = JSON.parse(this.responseText);
+                    domLogin.removeLoginContainer();
+                    dom.showBoards(boards);
+                }
 
             }
-
         }
-    
+
+    }
+
 
 }

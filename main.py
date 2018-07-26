@@ -43,11 +43,11 @@ def getBoards():
 @app.route("/test1", methods = ['POST'])
 def test1():
     user_login_and_password = request.get_json()
-    user_id = logic.get_user_id(user_login_and_password)
     if logic.check_user_login(user_login_and_password) == False :
         login_result = "email doesn't exist"
         return login_result
     if logic.check_user_login(user_login_and_password) == True and logic.check_user_password(user_login_and_password) == True:
+        user_id = logic.get_user_id(user_login_and_password)
         session['user:' + str(user_id)] = user_login_and_password['email']
         login_result = logic.get_boards(user_id)
         login_result_jsoned = json.dumps(login_result)
