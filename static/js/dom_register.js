@@ -1,5 +1,6 @@
 let domRegister = {
 createRegisterContainer: function(){
+        console.log('createRegisterContainer fired');
         var registerContainer = document.createElement("div");
         registerContainer.setAttribute("id","registerContainer");
         registerContainer.setAttribute("class", "fluid-container");
@@ -30,9 +31,10 @@ createRegisterContainer: function(){
     },
 
     removeRegisterContainer: function(callback){
+        console.log('remove register fierd');
         var registerContainer = document.getElementById("registerContainer");
         registerContainer.parentNode.removeChild(registerContainer);
-        callback()
+        callback();
     },
 
     getRegisterForm: function(){

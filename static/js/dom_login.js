@@ -1,5 +1,6 @@
 let domLogin = {
     createLoginContainer: function(){
+        console.log('createLoginContainer fired');
         var loginContainer = document.createElement("div");
         loginContainer.setAttribute("id","loginContainer");
         loginContainer.setAttribute("class", "fluid-container");
@@ -25,10 +26,10 @@ let domLogin = {
     
     },
 
-    removeLoginContainer: function(){
+    removeLoginContainer: function(callback){
         var loginContainer = document.getElementById("loginContainer");
         loginContainer.parentNode.removeChild(loginContainer);
-        // callback()
+        callback()
         
     },
 
